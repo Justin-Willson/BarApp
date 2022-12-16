@@ -14,6 +14,6 @@ func main() {
 	router.POST("/ingredients", app.AddIngredient)
 	router.POST("/cocktails", app.AddCocktail)
 
-	fmt.Println("running")
 	router.Run("localhost:8080")
+	fmt.Println("running")
 }

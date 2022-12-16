@@ -4,19 +4,12 @@ import (
 	"github.com/Justin-Willson/BarApp/domain"
 )
 
-var ginPair = domain.IngredientQuantityPair{Ingredient: gin, Quantity: 3.0, Units: "ounces"}
-var vermouthPair = domain.IngredientQuantityPair{Ingredient: vermouth, Quantity: 0.75, Units: "ounces"}
+const COCKTAIL_TABLE_NAME = "cocktails"
 
-var martini = domain.Cocktail{Ingredients: []domain.IngredientQuantityPair{ginPair, vermouthPair},
-	Name:  "Martini",
-	Notes: "The best cocktial",
-}
-var cocktails = []domain.Cocktail{martini}
-
-func GetCocktails() []domain.Cocktail {
-	return cocktails
+func GetCocktails() []*domain.Cocktail {
+	return GetAll[domain.Cocktail](COCKTAIL_TABLE_NAME)
 }
 
-func AddCocktail(cocktial domain.Cocktail) {
-	cocktails = append(cocktails, cocktial)
+func AddCocktail(cocktail domain.Cocktail) {
+	InsertOne(cocktail, COCKTAIL_TABLE_NAME)
 }

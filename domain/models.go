@@ -1,19 +1,31 @@
 package domain
 
-type Ingredient struct {
-    Name  string  `json:"name"`
-    IsInStock bool  `json:"is_in_stock"`
-    Notes  string `json:"notes"`
+type DatabaseObject interface {
+	TableName() string
 }
 
-type IngredientQuantityPair struct {
+type Ingredient struct {
+	Name      string `json:"name"`
+	IsInStock bool   `json:"is_in_stock"`
+	Notes     string `json:"notes"`
+}
+
+func (_ Ingredient) TableName() string {
+	return "ingredients"
+}
+
+type RecipeLine struct {
 	Ingredient Ingredient `json:"ingredient"`
-	Quantity float64 `json:"quantity"`
-	Units string `json:"units"`
+	Quantity   float64    `json:"quantity"`
+	Units      string     `json:"units"`
 }
 
 type Cocktail struct {
-	Name string `json:"name"`
-	Ingredients []IngredientQuantityPair `json:"ingredients"`
-	Notes string `json:"notes"`
+	Name        string       `json:"name"`
+	Ingredients []RecipeLine `json:"ingredients"`
+	Notes       string       `json:"notes"`
+}
+
+func (_ Cocktail) TableName() string {
+	return "cocktails"
 }

@@ -24,5 +24,6 @@ func AddIngredient(c *gin.Context) {
 	//TODO add object verification
 
 	dal.AddIngredient(newIngredient)
+	//TODO: maybe return object from db?
 	c.IndentedJSON(http.StatusCreated, newIngredient)
 }
