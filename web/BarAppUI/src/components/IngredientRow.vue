@@ -1,21 +1,34 @@
-<script setup lang="ts">
+<script lang="ts">
+import { defineComponent } from 'vue'
 import type { Ingredient } from '@/domain/ingredient';
+import type { PropType } from 'vue'
 
-defineProps<{
-  ingredient: Ingredient
-}>()
+export default defineComponent({
+  props: {
+    ingredient: {
+      type: Object as PropType<Ingredient>,
+        required: true
+      }
+  },
+  mounted() {
+    this.ingredient
+  }
+})
 </script>
 
-<template>
-  <b-container class="bv-example-row">
-  <b-row class="justify-content-md-center">
-    <b-col col lg="2">{{ ingredient.name }}</b-col>
+<template>  
+  <b-row class="justify-content-md-center" :class="ingredient.is_in_stock ? 'inStock' : 'outOfStock' ">
+    <b-col col lg="4">{{ ingredient.name }}</b-col>
     <b-col cols="12" md="auto">{{ ingredient.notes }}</b-col>
     <b-col col lg="2">{{ ingredient.is_in_stock }}</b-col>
   </b-row>
-</b-container>
 </template>
 
 <style scoped>
-
+.inStock {
+  color: green
+}
+.outOfStock {
+  color: red
+}
 </style>

@@ -6,10 +6,15 @@ import BootstrapVue3 from 'bootstrap-vue-3'
 import './assets/main.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue-3/dist/bootstrap-vue-3.css'
+import IngredientTableVue from './components/IngredientTable.vue'
+import IngredientRowVue from './components/IngredientRow.vue'
 
 const app = createApp(App)
 
 app.use(router)
 app.use(BootstrapVue3)
+
+app.component('IngredientTable', IngredientTableVue)
+app.component('IngredientRow', IngredientRowVue)
 
 app.mount('#app')
