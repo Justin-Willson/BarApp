@@ -17,7 +17,6 @@ export default defineComponent({
       e.preventDefault()
       let ingredient = new Ingredient(this.name, this.is_in_stock, this.notes)
       let response = await ingredient.postIngredient()
-      alert(response.name)
       this.clearForm()
 
     },
