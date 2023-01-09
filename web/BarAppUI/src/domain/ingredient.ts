@@ -14,7 +14,7 @@ export class Ingredient {
 
     static async getIngredients(): Promise<Ingredient[]>  {
         try {
-            const ingredients = axios.get(Ingredient.INGREDIENTS_ENDPOINT)
+            let ingredients = axios.get(Ingredient.INGREDIENTS_ENDPOINT)
                                     .then((response) => response.data)
                                     .then((data) => data as Ingredient[])
             
@@ -25,4 +25,18 @@ export class Ingredient {
           }
           return []
     }
+
+    async postIngredient(): Promise<Ingredient>  {
+      try {
+          let ingredient = axios.post(Ingredient.INGREDIENTS_ENDPOINT, this)
+                                  .then((response) => response.data)
+                                  .then((data) => data as Ingredient)
+          
+          return ingredient   
+          
+        } catch (error) {
+          console.log(error);
+        }
+        return []
+  }
 }

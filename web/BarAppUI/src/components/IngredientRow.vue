@@ -17,14 +17,17 @@ export default defineComponent({
 </script>
 
 <template>  
-  <b-row class="justify-content-md-center" :class="ingredient.is_in_stock ? 'inStock' : 'outOfStock' ">
-    <b-col col lg="4">{{ ingredient.name }}</b-col>
-    <b-col cols="12" md="auto">{{ ingredient.notes }}</b-col>
-    <b-col col lg="2">{{ ingredient.is_in_stock }}</b-col>
-  </b-row>
+  <tr class="ingredient_row" :class="ingredient.is_in_stock ? 'inStock' : 'outOfStock' ">
+    <td col lg="4">{{ ingredient.name }}</td>
+    <td cols="12" md="auto">{{ ingredient.notes }}</td>
+    <td col lg="2">{{ ingredient.is_in_stock }}</td>
+  </tr>
 </template>
 
 <style scoped>
+.ingredient_row {
+  outline: black;
+}
 .inStock {
   color: green
 }
