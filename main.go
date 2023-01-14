@@ -26,6 +26,7 @@ func main() {
 	router.GET("/ingredients", app.GetIngredients)
 	router.GET("/cocktails", app.GetCocktails)
 	router.POST("/ingredients", app.AddIngredient)
+	router.DELETE("/ingredients/:id", app.DeleteIngredientById)
 	router.POST("/cocktails", app.AddCocktail)
 
 	router.Run("localhost:8080")

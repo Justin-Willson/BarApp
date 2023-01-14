@@ -27,3 +27,10 @@ func AddIngredient(c *gin.Context) {
 	//TODO: maybe return object from db?
 	c.IndentedJSON(http.StatusCreated, newIngredient)
 }
+
+func DeleteIngredientById(c *gin.Context) {
+	id := c.Param("id")
+	result := dal.DeleteIngredient(id)
+	//TODO: add some sort of interpretation of result
+	c.IndentedJSON(http.StatusOK, result)
+}

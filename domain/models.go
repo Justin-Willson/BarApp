@@ -5,6 +5,7 @@ type DatabaseObject interface {
 }
 
 type Ingredient struct {
+	Id        string `json:"id" bson:"_id,omitempty"`
 	Name      string `json:"name"`
 	IsInStock bool   `json:"is_in_stock"`
 	Notes     string `json:"notes"`

@@ -7,6 +7,7 @@ import (
 
 	"github.com/Justin-Willson/BarApp/domain"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -82,4 +83,22 @@ func GetAll[T domain.DatabaseObject](tableName string) []*T {
 
 	fmt.Printf("Found multiple documents (array of pointers): %+v\n", objects)
 	return objects
+}
+
+func DeleteById(tableName string, idString string) *mongo.DeleteResult {
+	client := MakeClient()
+	database := client.Database(DATABASE_NAME)
+	collection := database.Collection(tableName)
+	id, err := primitive.ObjectIDFromHex(idString)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	result, err := collection.DeleteOne(context.TODO(), bson.M{"_id": id})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Printf("DeleteOne removed %v document(s)\n", result.DeletedCount)
+	return result
 }
